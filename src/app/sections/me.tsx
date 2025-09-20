@@ -19,6 +19,8 @@ export default function MeSection({ lng }: { lng: string }) {
 function MeSectionInner() {
   const { t } = useTranslation('me');
   const skills: string[] = t('skills', { returnObjects: true }) as string[];
+  const CV_PATH = '/CV Stian Wilhelmsen 2025.pdf';
+  const CV_URL = encodeURI(CV_PATH); // -> "/CV%20Stian%20Wilhelmsen%202025.pdf"
 
   return (
     <section className="w-full pb-6 pt-6">
@@ -81,13 +83,14 @@ function MeSectionInner() {
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
             <a
-              href="/cv.pdf"
+              href={CV_URL}
+              download="Stian_Wilhelmsen_CV_2025.pdf"
               className="px-4 py-2 rounded-lg border border-indigo-500 text-indigo-500 hover:bg-indigo-500 hover:text-white transition"
             >
               {t('about.downloadCv', { defaultValue: 'Last ned CV' })}
             </a>
             <a
-              href="mailto:stian@example.com"
+              href="mailto:stianw@hotmail.no"
               className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-[var(--background)]/60 transition"
             >
               {t('about.contact', { defaultValue: 'Kontakt meg' })}
