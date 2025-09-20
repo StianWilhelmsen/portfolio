@@ -1,0 +1,19 @@
+{
+  "title": "Contact",
+  "subtitle": "Want to collaborate or just say hi? Send me an email.",
+  "emailLabel": "Email",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "form": {
+    "name": "Your name",
+    "email": "Your email",
+    "message": "Message",
+    "send": "Open email",
+    "sending": "Opening…",
+    "subject": "Hello Stian — from your portfolio"
+  },
+  "fallback": {
+    "orWrite": "or write directly to",
+    "privacy": "Your message is prepared locally and opens in your email client—nothing is sent from this site."
+  }
+}

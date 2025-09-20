@@ -1,0 +1,19 @@
+{
+  "title": "Kontakt",
+  "subtitle": "Vil du samarbeide eller bare si hei? Send meg en e-post.",
+  "emailLabel": "E-post",
+  "copy": "Kopier",
+  "copied": "Kopiert!",
+  "form": {
+    "name": "Ditt navn",
+    "email": "Din e-post",
+    "message": "Melding",
+    "send": "Åpne e-post",
+    "sending": "Åpner…",
+    "subject": "Hei Stian — fra porteføljen din"
+  },
+  "fallback": {
+    "orWrite": "eller skriv direkte til",
+    "privacy": "Meldingen forberedes lokalt og åpnes i e-postklienten din—ingenting sendes fra nettsiden."
+  }
+}

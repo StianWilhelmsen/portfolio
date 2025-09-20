@@ -1,0 +1,29 @@
+{
+    "technologies": [
+        "Java",
+        "Python",
+        "C#",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Vue.js",
+        "MySQL",
+        "Firebase"
+    ],
+
+    "otherTechnologies": [
+        "Git",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "REST APIs",
+        "Spring Boot",
+        "Tailwind CSS",
+        "Maven",
+        "Jest",
+        "Markup/Markdown",
+        ""
+    ],
+    "intro": "Her en liste over teknologi jeg har arbeidet med gjennom studie, jobb og egne prosjekter."
+}

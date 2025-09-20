@@ -1,0 +1,97 @@
+{
+  "title": "Experience",
+  "subtitle": "A quick timeline of my work and education.",
+  "work": "Work",
+  "education": "Education",
+  "items": [
+    {
+      "type": "work",
+      "title": "Fullstack Developer",
+      "company": "The Life Balance Company",
+      "location": "Trondheim (Hybrid)",
+      "date": "Oct 2024 – Sep 2025",
+      "highlights": [
+        "Continuous development of the app across frontend, backend and a NoSQL database.",
+        "Planned features through workshops and iterative agile delivery.",
+        "Improved quality and accessibility with component refactors and tests."
+      ],
+      "tech": ["Next.js", "TypeScript", "Node.js", "NoSQL", "Git", "Docker", "CI/CD", "Cloud"]
+    },
+    {
+      "type": "work",
+      "title": "Store Associate",
+      "company": "REMA 1000 Elgeseter",
+      "location": "Trondheim",
+      "date": "Aug 2024 – Mar 2025",
+      "highlights": [
+        "Customer service, store closing responsibilities and inventory replenishment."
+      ],
+      "tech": []
+    },
+    {
+      "type": "work",
+      "title": "Developer (Website & Tech Research)",
+      "company": "Builder AS",
+      "location": "Trondheim",
+      "date": "Feb 2023 – Jun 2023",
+      "highlights": [
+        "Designed and developed company website.",
+        "Researched potential product tech stack and presented findings to stakeholders."
+      ],
+      "tech": ["Vue.js", "JavaScript", "Git"]
+    },
+    {
+      "type": "work",
+      "title": "User Personal Assistant (BPA)",
+      "company": "Bergen Kommune",
+      "location": "Bergen",
+      "date": "May 2023 – Aug 2023",
+      "highlights": [
+        "Assisted with daily tasks, cooking and personal care."
+      ],
+      "tech": []
+    },
+    {
+      "type": "work",
+      "title": "Store Associate",
+      "company": "REMA 1000 Kleppestø",
+      "location": "Askøy",
+      "date": "Jul 2019 – Jul 2021",
+      "highlights": [
+        "Customer service, store upkeep and inventory replenishment."
+      ],
+      "tech": []
+    },
+    {
+      "type": "edu",
+      "title": "MSc, Computer Science – Software Systems",
+      "company": "NTNU Trondheim",
+      "location": "Trondheim",
+      "date": "Aug 2024 – present",
+      "highlights": [
+        "5-year integrated master’s profile in Software Systems."
+      ],
+      "tech": ["Java", "Python", "Spring Boot", "FastAPI", "SQL/NoSQL", "Cloud", "Agile"]
+    },
+    {
+      "type": "edu",
+      "title": "BEng, Computer Engineering – Systems Development",
+      "company": "NTNU Trondheim",
+      "location": "Trondheim",
+      "date": "Aug 2021 – Aug 2024",
+      "highlights": [
+        "Bachelor thesis for Piscada: cloud viewer for industrial process images (Next.js)."
+      ],
+      "tech": ["Next.js", "TypeScript", "REST APIs", "Docker", "Git"]
+    },
+    {
+      "type": "edu",
+      "title": "Upper Secondary – Natural Sciences",
+      "company": "Askøy VGS",
+      "location": "Askøy",
+      "date": "Aug 2018 – Jun 2021",
+      "highlights": [],
+      "tech": []
+    }
+  ]
+}

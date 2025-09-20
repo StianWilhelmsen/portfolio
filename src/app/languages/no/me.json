@@ -1,0 +1,22 @@
+{
+    "details": {
+        "work": "Utvikler for The Life Balance Company",
+        "student": "Studerer Master i Datateknologi ved NTNU"
+
+    },
+    "skills": [
+        "Fullstack Utvikler",
+        "Test drevet utvikling",
+        "Skybasert utvikling",
+        "Maskin Læring",
+        "DevOps",
+        "Agile Metodikk",
+        "CI/CD"
+  ],
+  "about": {
+    "title": "Mine ferdigheter inkluderer:",
+    "blurb": "Jeg bygger moderne, raske og tilgjengelige løsninger med fokus på kvalitet i både kode og brukeropplevelse.",
+    "downloadCv": "Last ned CV",
+    "contact": "Kontakt meg"
+  }
+}

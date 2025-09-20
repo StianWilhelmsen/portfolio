@@ -1,0 +1,97 @@
+{
+  "title": "Erfaring",
+  "subtitle": "En kort tidslinje over arbeid og utdanning.",
+  "work": "Arbeid",
+  "education": "Utdanning",
+  "items": [
+    {
+      "type": "work",
+      "title": "Fullstack Utvikler",
+      "company": "The Life Balance Company",
+      "location": "Trondheim (Hybrid)",
+      "date": "okt. 2024 – sep. 2025",
+      "highlights": [
+        "Kontinuerlig utvikling av app på frontend, backend og NoSQL-database.",
+        "Planla funksjonalitet gjennom workshops og smidig leveranser.",
+        "Forbedret kvalitet og tilgjengelighet med komponent-refaktorer og tester."
+      ],
+      "tech": ["Next.js", "TypeScript", "Node.js", "NoSQL", "Git", "Docker", "CI/CD", "Cloud"]
+    },
+    {
+      "type": "work",
+      "title": "Butikkmedarbeider",
+      "company": "REMA 1000 Elgeseter",
+      "location": "Trondheim",
+      "date": "aug. 2024 – mars 2025",
+      "highlights": [
+        "Kundeservice, stengeansvar og varepåfylling."
+      ],
+      "tech": []
+    },
+    {
+      "type": "work",
+      "title": "Utvikler (Nettside & Teknologikartlegging)",
+      "company": "Builder AS",
+      "location": "Trondheim",
+      "date": "feb. 2023 – juni 2023",
+      "highlights": [
+        "Utformet og utviklet selskapets nettside.",
+        "Kartla mulig techstack for produktutvikling og presenterte rapport til eiere."
+      ],
+      "tech": ["Vue.js", "JavaScript", "Git"]
+    },
+    {
+      "type": "work",
+      "title": "Bruker Personlig Assistent (BPA)",
+      "company": "Bergen Kommune",
+      "location": "Bergen",
+      "date": "mai 2023 – aug. 2023",
+      "highlights": [
+        "Bisto med daglige gjøremål, matlaging og personlig stell."
+      ],
+      "tech": []
+    },
+    {
+      "type": "work",
+      "title": "Butikkmedarbeider",
+      "company": "REMA 1000 Kleppestø",
+      "location": "Askøy",
+      "date": "juli 2019 – juli 2021",
+      "highlights": [
+        "Kundeservice, butikkdrift og varepåfylling."
+      ],
+      "tech": []
+    },
+    {
+      "type": "edu",
+      "title": "Master i Datateknologi – Programvaresystemer",
+      "company": "NTNU Trondheim",
+      "location": "Trondheim",
+      "date": "aug. 2024 – nå",
+      "highlights": [
+        "5-årig integrert master med hovedprofil Programvaresystemer."
+      ],
+      "tech": ["Java", "Python", "Spring Boot", "FastAPI", "SQL/NoSQL", "Cloud", "Smidig"]
+    },
+    {
+      "type": "edu",
+      "title": "Bachelor i Dataingeniør – Systemutvikling",
+      "company": "NTNU Trondheim",
+      "location": "Trondheim",
+      "date": "aug. 2021 – aug. 2024",
+      "highlights": [
+        "Bacheloroppgave for Piscada: sky-viewer for prosessbilder (Next.js)."
+      ],
+      "tech": ["Next.js", "TypeScript", "REST-APIer", "Docker", "Git"]
+    },
+    {
+      "type": "edu",
+      "title": "Studiespesialisering – Realfag",
+      "company": "Askøy VGS",
+      "location": "Askøy",
+      "date": "aug. 2018 – juni 2021",
+      "highlights": [],
+      "tech": []
+    }
+  ]
+}

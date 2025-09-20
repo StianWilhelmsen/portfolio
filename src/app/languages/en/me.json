@@ -1,0 +1,23 @@
+{
+    "details": {
+        "work": "Developer at The Life Balance Company",
+        "student": "Studying Ms. Computer Science at NTNU"
+    },
+    "skills": [
+    "Fullstack Developer",
+    "Test driven development",
+    "Cloud Computing",
+    "Machine Learning",
+    "DevOps",
+    "Agile Methodologies",
+    "CI/CD"
+  ],
+  "about": {
+    "title": "My skills include:",
+    "blurb": "I build modern, fast and accessible solutions with a focus on quality in both code and user experience.",
+    "downloadCv": "Download CV",
+    "contact": "Contact me"
+  }
+
+  
+}
