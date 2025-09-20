@@ -14,13 +14,16 @@ type TechnologyCardProps = {
 
 function hexToRgba(hex: string, alpha = 0.12) {
   const h = hex.replace('#', '');
-  const v = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+  const v = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
   const num = parseInt(v, 16);
   const r = (num >> 16) & 255;
   const g = (num >> 8) & 255;
   const b = num & 255;
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+
+// allow a CSS custom property on the style prop (no `any`)
+type StyleWithVar = React.CSSProperties & { ['--ring-color']?: string };
 
 export default function TechnologyCard({
   name,
@@ -30,7 +33,7 @@ export default function TechnologyCard({
   subtitle,
   className = '',
 }: TechnologyCardProps) {
-  const tint = hexToRgba(color, 0.10);
+  const tint = hexToRgba(color, 0.1);
   const glow = hexToRgba(color, 0.45);
   const ring = hexToRgba(color, 0.35);
 
@@ -46,10 +49,7 @@ export default function TechnologyCard({
       aria-label={name}
     >
       {/* Top half */}
-      <div
-        className="h-16 md:h-20"
-        style={{ background: tint }}
-      />
+      <div className="h-16 md:h-20" style={{ background: tint }} />
 
       {/* Divider line */}
       <div className="h-px w-full bg-gray-200 dark:bg-gray-800" />
@@ -57,9 +57,7 @@ export default function TechnologyCard({
       {/* Bottom half */}
       <div className="h-14 md:h-16 flex flex-col items-center justify-center px-2 text-center">
         <span className="text-xs font-medium">{name}</span>
-        {subtitle ? (
-          <span className="text-[10px] opacity-70">{subtitle}</span>
-        ) : null}
+        {subtitle ? <span className="text-[10px] opacity-70">{subtitle}</span> : null}
       </div>
 
       {/* Icon */}
@@ -74,7 +72,8 @@ export default function TechnologyCard({
           ring-1 ring-transparent
           group-hover:ring-[color:var(--ring-color)]
         "
-        style={{ ['--ring-color' as any]: ring }}
+        // no `any` here
+        style={{ ['--ring-color']: ring } as StyleWithVar}
       >
         {/* Glow */}
         <div
@@ -94,6 +93,10 @@ export default function TechnologyCard({
   );
 
   return href ? (
-    <a href={href} target="_blank" rel="noreferrer" className="block">{content}</a>
-  ) : content;
+    <a href={href} target="_blank" rel="noreferrer" className="block">
+      {content}
+    </a>
+  ) : (
+    content
+  );
 }
