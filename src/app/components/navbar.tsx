@@ -1,4 +1,3 @@
-// src/app/components/navbar.tsx
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -9,7 +8,6 @@ import { getI18nClient } from '../../i18n/client';
 
 const LOCALES = ['en', 'no'] as const;
 type Locale = (typeof LOCALES)[number];
-
 function isLocale(x: string | undefined): x is Locale {
   return !!x && (LOCALES as readonly string[]).includes(x);
 }
@@ -30,13 +28,11 @@ export default function Navbar() {
     return isLocale(p[1]) ? p[1] : 'en';
   }, [pathname]);
 
-  // init i18n for current locale BEFORE calling useTranslation
+  // init i18n before using useTranslation
   useEffect(() => {
     let alive = true;
     setReady(false);
-    getI18nClient(currentLocale).finally(() => {
-      if (alive) setReady(true);
-    });
+    getI18nClient(currentLocale).finally(() => alive && setReady(true));
     return () => {
       alive = false;
     };
@@ -64,10 +60,9 @@ export default function Navbar() {
   }, []);
 
   // smooth scroll
-  const onClick = (id: string, after?: () => void) => (e: React.MouseEvent) => {
+  const onClick = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    after?.();
   };
 
   // change locale (preserve path, query, hash)
@@ -86,7 +81,7 @@ export default function Navbar() {
     router.replace(qs ? `${newPath}?${qs}${hash}` : `${newPath}${hash}`);
   };
 
-  if (!ready) return null; // or a small skeleton bar
+  if (!ready) return null;
 
   return (
     <NavbarInner
@@ -105,18 +100,11 @@ function NavbarInner({
   changeLocale,
 }: {
   active: string;
-  onClick: (id: string, after?: () => void) => (e: React.MouseEvent) => void;
+  onClick: (id: string) => (e: React.MouseEvent) => void;
   currentLocale: Locale;
   changeLocale: (lng: string) => void;
 }) {
   const { t } = useTranslation('navbar');
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (open) document.body.classList.add('overflow-hidden');
-    else document.body.classList.remove('overflow-hidden');
-    return () => document.body.classList.remove('overflow-hidden');
-  }, [open]);
 
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-[var(--background)]/80 backdrop-blur dark:border-gray-800">
@@ -138,12 +126,23 @@ function NavbarInner({
             </select>
           </div>
 
-          {/* Center: Tabs (hidden on mobile) */}
-          <ul className="hidden items-center gap-6 md:flex md:gap-8">
+          {/* Center: Tabs -> scrollable on phones */}
+          <ul
+            className="
+              flex items-center gap-5 md:gap-8
+              overflow-x-auto md:overflow-visible
+              whitespace-nowrap
+              scroll-smooth
+              [-ms-overflow-style:'none'] [scrollbar-width:none]
+              [&::-webkit-scrollbar]:hidden
+              mx-2
+            "
+            aria-label="Primary"
+          >
             {SECTION_IDS.map((id) => {
               const isActive = active === id;
               return (
-                <li key={id} className="relative">
+                <li key={id} className="relative snap-start">
                   <a
                     href={`#${id}`}
                     onClick={onClick(id)}
@@ -169,74 +168,10 @@ function NavbarInner({
             })}
           </ul>
 
-          {/* Right: Theme + Hamburger (mobile only shows hamburger) */}
-          <div className="flex items-center gap-2">
-            <div className="hidden md:block">
-              <ThemeToggle />
-            </div>
-            <button
-              type="button"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 text-[var(--foreground)] hover:bg-black/5 dark:border-gray-700 dark:hover:bg-white/5 md:hidden"
-              aria-label={open ? 'Close menu' : 'Open menu'}
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-            >
-              <span className="sr-only">{open ? 'Close' : 'Open'}</span>
-              <div className="relative h-4 w-4">
-                <span
-                  className={`absolute left-0 top-0 block h-0.5 w-full transform rounded bg-current transition ${
-                    open ? 'translate-y-1.5 rotate-45' : ''
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 top-1.5 block h-0.5 w-full transform rounded bg-current transition ${
-                    open ? 'opacity-0' : ''
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 top-3 block h-0.5 w-full transform rounded bg-current transition ${
-                    open ? '-translate-y-1.5 -rotate-45' : ''
-                  }`}
-                />
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile sheet menu */}
-      <div
-        className={[
-          'fixed inset-x-0 top-14 z-40 border-b border-gray-200 bg-[var(--background)] shadow-lg transition-transform duration-300 dark:border-gray-800 md:hidden',
-          open ? 'translate-y-0' : '-translate-y-full',
-        ].join(' ')}
-      >
-        <div className="px-4 py-4">
-          <div className="mb-3 flex items-center justify-end">
+          {/* Right: Theme toggle */}
+          <div className="flex items-center">
             <ThemeToggle />
           </div>
-
-          <ul className="flex flex-col gap-2">
-            {SECTION_IDS.map((id) => {
-              const isActive = active === id;
-              return (
-                <li key={id}>
-                  <a
-                    href={`#${id}`}
-                    onClick={onClick(id, () => setOpen(false))}
-                    className={[
-                      'block rounded-lg px-3 py-2 text-base',
-                      isActive
-                        ? 'bg-indigo-500/10 text-indigo-500'
-                        : 'text-[var(--foreground)]/80 hover:bg-black/5 dark:hover:bg-white/5',
-                    ].join(' ')}
-                  >
-                    {t(`navbar.${id}`)}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
         </div>
       </div>
     </nav>
