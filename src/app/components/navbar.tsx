@@ -1,3 +1,4 @@
+// src/app/components/navbar.tsx
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -7,6 +8,12 @@ import ThemeToggle from './ThemeToggle';
 import { getI18nClient } from '../../i18n/client';
 
 const LOCALES = ['en', 'no'] as const;
+type Locale = (typeof LOCALES)[number];
+
+function isLocale(x: string | undefined): x is Locale {
+  return !!x && (LOCALES as readonly string[]).includes(x);
+}
+
 const SECTION_IDS = ['me', 'skills', 'experience', 'projects', 'contact'] as const;
 
 export default function Navbar() {
@@ -18,18 +25,18 @@ export default function Navbar() {
   const searchParams = useSearchParams();
 
   // determine current locale from the URL
-  const currentLocale = useMemo(() => {
+  const currentLocale: Locale = useMemo(() => {
     const p = pathname.split('/');
-    return (LOCALES as readonly string[]).includes(p[1] as any)
-      ? (p[1] as (typeof LOCALES)[number])
-      : 'en';
+    return isLocale(p[1]) ? p[1] : 'en';
   }, [pathname]);
 
   // init i18n for current locale BEFORE calling useTranslation
   useEffect(() => {
     let alive = true;
     setReady(false);
-    getI18nClient(currentLocale).finally(() => alive && setReady(true));
+    getI18nClient(currentLocale).finally(() => {
+      if (alive) setReady(true);
+    });
     return () => {
       alive = false;
     };
@@ -65,11 +72,12 @@ export default function Navbar() {
 
   // change locale (preserve path, query, hash)
   const changeLocale = async (lng: string) => {
+    if (!isLocale(lng)) return;
     try {
       await getI18nClient(lng);
     } catch {}
     const parts = pathname.split('/');
-    const hasLocale = (LOCALES as readonly string[]).includes(parts[1] as any);
+    const hasLocale = isLocale(parts[1]);
     if (hasLocale) parts[1] = lng;
     else parts.splice(1, 0, lng);
     const newPath = parts.join('/') || `/${lng}`;
@@ -78,7 +86,7 @@ export default function Navbar() {
     router.replace(qs ? `${newPath}?${qs}${hash}` : `${newPath}${hash}`);
   };
 
-  if (!ready) return null; // small skeleton could go here
+  if (!ready) return null; // or a small skeleton bar
 
   return (
     <NavbarInner
@@ -98,13 +106,12 @@ function NavbarInner({
 }: {
   active: string;
   onClick: (id: string, after?: () => void) => (e: React.MouseEvent) => void;
-  currentLocale: 'en' | 'no';
+  currentLocale: Locale;
   changeLocale: (lng: string) => void;
 }) {
   const { t } = useTranslation('navbar');
   const [open, setOpen] = useState(false);
 
-  // prevent background scroll when menu is open
   useEffect(() => {
     if (open) document.body.classList.add('overflow-hidden');
     else document.body.classList.remove('overflow-hidden');
@@ -123,7 +130,7 @@ function NavbarInner({
             <select
               id="lang"
               value={currentLocale}
-              onChange={(e) => changeLocale(e.target.value as 'en' | 'no')}
+              onChange={(e) => changeLocale(e.target.value)}
               className="h-8 rounded-md border border-gray-300 bg-[var(--background)] px-2 text-sm text-[var(--foreground)] dark:border-gray-700"
             >
               <option value="en">EN</option>
@@ -149,7 +156,6 @@ function NavbarInner({
                     ].join(' ')}
                   >
                     {t(`navbar.${id}`)}
-                    {/* If your i18n namespace is "navbar", and keys are `me`,`skills`,... use t(id) instead */}
                   </a>
                   <span
                     className={[
@@ -175,7 +181,6 @@ function NavbarInner({
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
-              {/* Hamburger / Close icon */}
               <span className="sr-only">{open ? 'Close' : 'Open'}</span>
               <div className="relative h-4 w-4">
                 <span
@@ -207,7 +212,6 @@ function NavbarInner({
         ].join(' ')}
       >
         <div className="px-4 py-4">
-          {/* Top row inside sheet: theme toggle */}
           <div className="mb-3 flex items-center justify-end">
             <ThemeToggle />
           </div>
