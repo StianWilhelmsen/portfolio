@@ -168,7 +168,6 @@ function NavbarInner({
             })}
           </ul>
 
-          {/* Right: Theme toggle */}
           <div className="flex items-center">
             <ThemeToggle />
           </div>
